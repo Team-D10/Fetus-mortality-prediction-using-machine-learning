@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>TITLE</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<style>
+.back{
+ background-image: url("{{ url_for('static', filename='image/image.jpg') }}");
+background-repeat:no-repeat;
+background-size:cover;
+}
+.white{
+color:white;
+}
+.nspace{
+margin:15px 15px 30px 30px;
+padding:9px 10px;
+background: palegreen;
+width:500px
+}
+.space{
+margin:10px 30px;
+padding:10px 10px;
+background: palegreen;
+width:500px
+}
+.gap{
+padding:10px 20px;
+}
+</style>
+  
+</head>
+
+<body class="back">
+ <div>
+	<div class="jumbotron">
+	<h1 style="text-align:center">PREDICTION OF CHILD MORTALITY </h1>
+	
+	</div>
+     <!-- Main Input For Receiving Query to our ML -->
+    <form class="form-group" action="{{ url_for('predict')}}"method="post">
+    		
+		<div class="row">
+		<div class="gap col-md-6 ">
+		<label class="white" for="">baseline_value</label>
+		<input type="number" class="space form-control" step="0.01" name="baseline_value" placeholder="baseline_value" required="required" /><br>
+
+		<label class="white"  for="">accelerations</label>
+		<input type="number" class="space form-control" step="0.01" name="accelerations" placeholder="accelerations" required="required" /><br>
+
+		<label class="white"  for="">fetal_movement</label>
+		<input type="number" class="space form-control" step="0.01" name="fetal_movement" placeholder="fetal_movement" required="required" /><br>
+
+		<label class="white" for="">uterine_contractions</label>
+		<input type="number" class="space form-control" step="0.01" name="uterine_contractions" placeholder="uterine_contractions" required="required" /><br>
+
+
+		<label class="white"  for="">light_decelerations</label>		
+		<input type="number" class="space form-control" step="0.01" name="light_decelerations" placeholder="light_decelerations" required="required" /><br>
+
+		<label class="white"  for="">severe_decelerations</label>		
+		<input type="number" class="space form-control" step="0.01" name="severe_decelerations" placeholder="severe_decelerations" required="required" /><br>
+
+		<label class="white"  for="">prolongued_decelerations</label>		
+		<input type="number" class="space form-control" step="0.01" name="prolongued_decelerations" placeholder="prolongued_decelerations" required="required" /><br>
+
+		<label class="white"  for="">abnormal_short_term_variability</label>		
+		<input type="number" class="space form-control" step="0.01" name="abnormal_short_term_variability" placeholder="abnormal_short_term_variability" required="required" /><br>
+
+		<label class="white"  for="">mean_value_of_short_term_variability</label>		
+		<input type="number" class="space form-control" step="0.01" name="mean_value_of_short_term_variability" placeholder="mean_value_of_short_term_variability" required="required" /><br>
+
+		<label class="white"  for="">percentage_of_time_with_abnormal_long_term_variability</label>		
+		<input type="number" class="space form-control" step="0.01" name="percentage_of_time_with_abnormal_long_term_variability" placeholder="percentage_of_time_with_abnormal_long_term_variability" required="required" /><br>
+
+
+		<label class="white"  for="">mean_value_of_long_term_variability</label>
+		<input type="number" class="space form-control" step="0.01" name="mean_value_of_long_term_variability" placeholder="mean_value_of_long_term_variability" required="required" /><br>
+		</div>
+
+<div class="gap col-md-6">
+		<label class="white"  for="">histogram_width</label>
+		<input type="number" class="space form-control" step="0.01" name="histogram_width" placeholder="histogram_width" required="required" /><br>
+
+		<label class="white"  for="">histogram_min</label>
+		<input type="number" class="space form-control" step="0.01" name="histogram_min" placeholder="histogram_min" required="required" /><br>
+
+		<label class="white"  for="">histogram_max</label>
+		<input type="number" class="space form-control" step="0.01" name="histogram_max" placeholder="histogram_max" required="required" /><br>
+
+		<label class="white"  for="">histogram_number_of_peaks</label>		
+		<input type="number" class="space form-control" step="0.01" name="histogram_number_of_peaks" placeholder="histogram_number_of_peaks" required="required" /><br>
+
+		<label class="white"  for="">histogram_number_of_zeroes</label>		
+		<input type="number" class="space form-control" step="0.01" name="histogram_number_of_zeroes" placeholder="histogram_number_of_zeroes" required="required" /><br>
+
+		<label class="white"  for="">histogram_mode</label>		
+		<input type="number" class="space form-control" step="0.01" name="histogram_mode" placeholder="histogram_mode" required="required" /><br>
+
+		<label class="white"  for="">histogram_mean</label>		
+		<input type="number" class="space form-control" step="0.01" name="histogram_mean" placeholder="histogram_mean" required="required" /><br>
+
+		<label class="white"  for="">histogram_median</label>
+		<input type="number" class="space form-control" step="0.01" name="histogram_median" placeholder="histogram_median" required="required" /><br>
+
+		<label class="white"  for="">histogram_variance</label>
+		<input type="number" class="space form-control" step="0.01" name="histogram_variance" placeholder="histogram_variance" required="required" /><br>
+
+		<label class="white"  for="">histogram_tendency</label>
+		<input type="number" class="space form-control" step="0.01" name="histogram_tendency" placeholder="histogram_tendency" required="required" /><br>
+	
+</div>
+</div>
+
+<div style="padding:2% 35%">
+  <button type="submit" class="btn btn-success btn-block" style="width:350px;padding:20px">Predict</button>		
+</div>
+      
+    </form>
+
+   <br>
+   <br>
+<div  style="background:skyblue;padding:2% 40%">
+   {{ prediction_text }}
+</div>
+ </div>
+
+
+</body>
+</html>
